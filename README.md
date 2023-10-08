@@ -1,6 +1,6 @@
 # Ballast Lane Technical Interview
 
-This is a test application for Ballast Lane, details on the test can be found on the following [PDF File](). The application should follow certain rules and be based on a user story created by me on the next topic.
+This is a test application for Ballast Lane, details on the test can be found on the following [PDF File](https://github.com/gig10/ballast_lane/blob/main/Ballast%20Lane%20-%20Technical%20Interview%20Exercise%20V2.pdf). The application should follow certain rules and be based on a user story created by me on the next topic.
 
 ## Game Database
 
