@@ -1,12 +1,12 @@
 version: '3.4'
 
 services:
-  gamedatabase:
-    image: ${DOCKER_REGISTRY-}gamedatabase
+  gamedatabase.api:
+    image: ${DOCKER_REGISTRY-}gamedatabaseapi
     container_name: API
     build:
       context: .
-      dockerfile: GameDatabase/Dockerfile
+      dockerfile: GameDatabase.API/Dockerfile
   sqlserver:
     image: "mcr.microsoft.com/mssql/server:2019-CU22-ubuntu-20.04"
     container_name: sql_server2019

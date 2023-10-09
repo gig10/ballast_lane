@@ -7,16 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["GameDatabase/GameDatabase.csproj", "GameDatabase/"]
-RUN dotnet restore "GameDatabase/GameDatabase.csproj"
+COPY ["GameDatabase.API/GameDatabase.API.csproj", "GameDatabase.API/"]
+RUN dotnet restore "GameDatabase.API/GameDatabase.API.csproj"
 COPY . .
-WORKDIR "/src/GameDatabase"
-RUN dotnet build "GameDatabase.csproj" -c Release -o /app/build
+WORKDIR "/src/GameDatabase.API"
+RUN dotnet build "GameDatabase.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "GameDatabase.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "GameDatabase.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "GameDatabase.dll"]
+ENTRYPOINT ["dotnet", "GameDatabase.API.dll"]

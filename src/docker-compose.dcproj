@@ -3,10 +3,10 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>54fc9698-6d3a-4217-a61f-ea04b467a35d</ProjectGuid>
+    <ProjectGuid>17000420-edaa-4f0c-9dbf-4cc2cd2fd2eb</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
-    <DockerServiceName>gamedatabase</DockerServiceName>
+    <DockerServiceName>gamedatabase.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">

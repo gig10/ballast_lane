@@ -1,4 +1,4 @@
-namespace GameDatabase
+namespace GameDatabase.API
 {
     public class WeatherForecast
     {
