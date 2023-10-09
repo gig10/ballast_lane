@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  gamedatabase:
+    image: ${DOCKER_REGISTRY-}gamedatabase
+    container_name: API
+    build:
+      context: .
+      dockerfile: GameDatabase/Dockerfile
+  sqlserver:
+    image: "mcr.microsoft.com/mssql/server:2019-CU22-ubuntu-20.04"
+    container_name: sql_server2019
+    ports:
+     - "1433:1433"
+    environment:
+     - ACCEPT_EULA=y
+     - SA_PASSWORD=*ABcZ123#
