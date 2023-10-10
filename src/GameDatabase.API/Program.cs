@@ -2,6 +2,11 @@ using GameDatabase.API.AuthEndpoints;
 using GameDatabase.API.Extensions;
 using GameDatabase.Infrastructure;
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+
+using System.Text;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,8 +27,10 @@ builder.Services.AddControllers(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 
-
 builder.Services.AddSingleton(configuration);
+
+builder.Services.AddJWTAuthentication(configuration);
+
 builder.Services.AddAutoMapper(typeof(AuthenticationMapper));
 builder.Services.AddInfrastructureServices();
 builder.Services.AddApplicationServices();
