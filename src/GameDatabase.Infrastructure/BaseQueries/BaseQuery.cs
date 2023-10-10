@@ -4,15 +4,20 @@ using Microsoft.Data.SqlClient;
 
 using System.Data;
 
-namespace GameDatabase.Infrastructure
+namespace GameDatabase.Infrastructure.BaseQueries
 {
     public abstract class BaseQuery<T> : IQuery where T : DbEntity
     {
-        protected readonly T Entity;        
+        protected readonly T Entity;
 
         public BaseQuery(T entity)
         {
-            Entity = entity;            
+            Entity = entity;
+        }
+
+        public BaseQuery()
+        {
+
         }
         public abstract SqlCommand Build(SqlConnection connection);
     }

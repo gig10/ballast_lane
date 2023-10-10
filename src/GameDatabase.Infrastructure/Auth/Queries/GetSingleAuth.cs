@@ -1,10 +1,11 @@
-﻿using GameDatabase.Infrastructure.DbEntities;
+﻿using GameDatabase.Infrastructure.BaseQueries;
+using GameDatabase.Infrastructure.DbEntities;
 
 using Microsoft.Data.SqlClient;
 
 namespace GameDatabase.Infrastructure.Auth.Queries
 {
-    internal class GetSingleAuth : SingleSelectQuery<DBAuthentication>
+    internal class GetSingleAuth : BaseQuery<DBAuthentication>
     {
         private const string query = @"Select [Id], [Email], [Password_Hash], [UserName] from [Users] Where [Email] = @email";
         private readonly string _email;

@@ -1,4 +1,5 @@
 ﻿using GameDatabase.Core.Entities;
+using GameDatabase.Infrastructure.BaseQueries;
 using GameDatabase.Infrastructure.DbEntities;
 
 using Microsoft.Data.SqlClient;

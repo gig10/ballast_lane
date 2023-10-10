@@ -2,7 +2,6 @@
 using GameDatabase.Core.Interfaces;
 using GameDatabase.Core.Services;
 using GameDatabase.Infrastructure;
-using GameDatabase.Infrastructure.Games;
 
 namespace GameDatabase.API.Extensions
 {

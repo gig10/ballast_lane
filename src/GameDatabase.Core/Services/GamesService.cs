@@ -12,9 +12,19 @@ namespace GameDatabase.Core.Services
             _repository = repository;
         }
 
-        public async Task<Game> GetGame()
+        public Task<Game> CreateGame(Game game)
         {
-            return await _repository.GetFirst();
+            return _repository.Create(game);
+        }
+
+        public Task<Game> GetGameById(int id)
+        {
+            return _repository.GetGameById(id);
+        }
+
+        public Task<List<Game>> ListGames()
+        {
+            return _repository.GetAll();
         }
     }
 }

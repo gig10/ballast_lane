@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 
-namespace GameDatabase.Infrastructure
+namespace GameDatabase.Infrastructure.BaseQueries
 {
     internal interface IQuery
     {

@@ -13,6 +13,6 @@ INSERT INTO Games ([Title], [Description], [ImageUrl])
 GO
 
 INSERT INTO Games ([Title], [Description], [ImageUrl])
-			VALUES ('Grand Theft Auto V', 'Elden Ring is an action role-playing game, set in third-person perspective, with a focus on combat and exploration. It includes elements that are similar to those in other FromSoftware-developed games such as the Dark Souls series, Bloodborne, and Sekiro: Shadows Die Twice.', 'https://m.media-amazon.com/images/I/6110RSDn3PL.jpg');
+			VALUES ('Elden Ring', 'Elden Ring is an action role-playing game, set in third-person perspective, with a focus on combat and exploration. It includes elements that are similar to those in other FromSoftware-developed games such as the Dark Souls series, Bloodborne, and Sekiro: Shadows Die Twice.', 'https://m.media-amazon.com/images/I/6110RSDn3PL.jpg');
 
 GO

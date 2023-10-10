@@ -3,45 +3,38 @@
 using GameDatabase.Core.Entities;
 using GameDatabase.Core.Interfaces;
 using GameDatabase.Infrastructure.DbEntities;
+using GameDatabase.Infrastructure.Games.Queries;
 
-using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 
 namespace GameDatabase.Infrastructure.Games
 {
     public class GamesRepository : BaseRepository<Game, DbGame>, IGamesRepository
     {
-        private readonly string _connectionString;
         public GamesRepository(IOptions<DatabaseOptions> options, IMapper mapper) : base(options, mapper)
         {
-            _connectionString = options.Value.ConnectionString;
         }
 
         public async Task<Game> Create(Game game)
         {
-            var query = new SingleGame();
-            var res = await ExecuteSelectSingleAsync(query);
-            return await Task.FromResult(new Game());
+            var dbGame = MapFromEntity(game);
+            var query = new CreateGameQuery(dbGame);
+
+            int id = await ExecuteScalarAsync(query);
+            dbGame.Id = id;
+            return MapFromDbEntity(dbGame);
         }
 
-        public async Task<Game> GetFirst()
+        public Task<List<Game>> GetAll()
         {
-            var query = new SingleGame();
-            var result = await ExecuteSelectSingleAsync(query);
-            return result;
-        }
-    }
-
-    public class SingleGame : SingleSelectQuery<DbGame>
-    {
-        public SingleGame()
-        {
-
+            var query = new ListGamesQuery();
+            return ExecuteListAsync(query);            
         }
 
-        public override SqlCommand Build(SqlConnection connection)
+        public Task<Game> GetGameById(int id)
         {
-            return new SqlCommand("Select top 1 * from games", connection);
+            var query = new FindGameQuery(id);
+            return ExecuteSelectSingleAsync(query);
         }
     }
 }
