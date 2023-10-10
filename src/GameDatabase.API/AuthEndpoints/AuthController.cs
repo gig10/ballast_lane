@@ -33,7 +33,7 @@ namespace GameDatabase.API.AuthEndpoints
             {
                 return Results.Ok(_mapper.Map<SignupResponse>(signupResult));
             }
-            return Results.Ok("User or password does not match");
+            return Results.BadRequest();
         }
 
         [AllowAnonymous]
