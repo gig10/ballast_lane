@@ -11,6 +11,7 @@
   <ItemGroup>
     <None Include="dbinit\dbinit.sh" />
     <None Include="dbinit\dbinit.sql" />
+    <None Include="dbinit\seed.sql" />
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>
