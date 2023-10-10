@@ -27,5 +27,6 @@ services:
     - sqlserver
    volumes:
     - ./dbinit/dbinit.sql:/tmp/dbinit/dbinit.sql
+    - ./dbinit/seed.sql:/tmp/dbinit/seed.sql
     - ./dbinit/dbinit.sh:/tmp/dbinit/dbinit.sh
    command: /bin/bash ./tmp/dbinit/dbinit.sh

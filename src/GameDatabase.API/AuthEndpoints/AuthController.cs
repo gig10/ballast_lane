@@ -41,12 +41,12 @@ namespace GameDatabase.API.AuthEndpoints
         [Route("signin")]
         public async Task<IResult> Signin(AuthRequest input)
         {
-            var authResult = await _authService.AuthenticateUser(input.Email, input.Password);
-            if (authResult == null)
+            var tokenResult = await _authService.AuthenticateUser(input.Email, input.Password);
+            if (tokenResult == null)
             {
                 return Results.Unauthorized();
             }
-            return Results.Ok(_mapper.Map<AuthResponse>(authResult));
+            return Results.Ok(new AuthResponse(tokenResult));
         }
     }
 }

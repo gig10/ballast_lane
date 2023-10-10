@@ -21,10 +21,8 @@ This is a basic application wich consists of platform where users can signup, cr
 > | `400`     | `application/json` | `{"code":"400","message":"Bad Request"}` |
 
 </details>
-
 <details>
  <summary><code>POST</code> <code><b>/signin</b></code> <code>(Authorization endpoint)</code></summary>
-
 ##### Body Payload json
 
 > | name     | type     | data type     | description               |
