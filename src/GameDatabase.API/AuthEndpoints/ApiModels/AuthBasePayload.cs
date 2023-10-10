@@ -8,9 +8,5 @@ namespace GameDatabase.API.AuthEndpoints.Payloads
         [MaxLength(100)]
         [EmailAddress]
         public string Email { get; set; }
-
-        [Required]
-        [StringLength(maximumLength: 30, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 4)]
-        public string UserName { get; set; }
     }
 }

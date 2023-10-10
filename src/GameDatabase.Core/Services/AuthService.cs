@@ -13,9 +13,21 @@ namespace GameDatabase.Core.Services
             _authRepository = authRepository;
         }
 
-        public async Task AuthenticateUser(string email, string password)
+        public async Task<Authentication> AuthenticateUser(string email, string password)
         {
-            await _authRepository.GetAuthInformation(email, password);
+            var authInfo = await _authRepository.GetAuthInformation(email, password);
+
+            if(authInfo == null)
+            {
+                return null;
+            }
+
+            if(!Crypt.Verify(password, authInfo.PasswordHash))
+            {
+                return null;
+            }
+
+            return authInfo;
         }
 
         public async Task<Authentication> SignupUser(string email, string password, string username)

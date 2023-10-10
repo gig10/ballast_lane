@@ -20,3 +20,12 @@ services:
     environment:
      - ACCEPT_EULA=y
      - SA_PASSWORD=*ABcZ123#
+  mssqltools:
+   image: "mcr.microsoft.com/mssql-tools"
+   container_name: mssqltools
+   depends_on:
+    - sqlserver
+   volumes:
+    - ./dbinit/dbinit.sql:/tmp/dbinit/dbinit.sql
+    - ./dbinit/dbinit.sh:/tmp/dbinit/dbinit.sh
+   command: /bin/bash ./tmp/dbinit/dbinit.sh

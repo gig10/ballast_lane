@@ -11,7 +11,7 @@ namespace GameDatabase.Core.Interfaces
 {
     public interface IAuthService
     {
-        Task AuthenticateUser(string email, string password);
+        Task<Authentication> AuthenticateUser(string email, string password);
         Task<Authentication> SignupUser(string email, string password, string username);
     }
 }

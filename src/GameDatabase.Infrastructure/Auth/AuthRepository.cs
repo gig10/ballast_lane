@@ -21,8 +21,8 @@ namespace GameDatabase.Infrastructure.Auth
             using var command = new SqlCommand(AuthQueries.CreateUserAuth, connection);
 
             command.Parameters.AddWithValue("@email", email);
-            command.Parameters.AddWithValue("@password_hash", email);
-            command.Parameters.AddWithValue("@username", email);
+            command.Parameters.AddWithValue("@password", password_hash);
+            command.Parameters.AddWithValue("@username", username);
 
             int id = await command.ExecuteNonQueryAsync();
 
@@ -36,13 +36,31 @@ namespace GameDatabase.Infrastructure.Auth
 
         public async Task<Authentication> GetAuthInformation(string email, string plaintext_password)
         {
-            string query = AuthQueries.CreateUserAuth;
-            return await Task.FromResult(new Authentication()
+            using var connection = new SqlConnection(_connectionString);
+            await connection.OpenAsync();
+            using var command = new SqlCommand(AuthQueries.GetUserAuth, connection);
+
+            command.Parameters.AddWithValue("@email", email);
+
+            var reader = await command.ExecuteReaderAsync();
+            if (reader.Read())
             {
-                Email = email,
-                UserName = "",
-                Id = 1
-            });
+                var authResp = new Authentication()
+                {
+                    Id = (int)reader["Id"],
+                    Email = (string)reader["Email"],
+                    PasswordHash = (string)reader["Password_Hash"],
+                    UserName = (string)reader["userName"]
+                };
+
+                return authResp;
+            }
+            else
+            {
+                return null;
+            }
+
         }
     }
 }
+
