@@ -6,37 +6,158 @@ This is a test application for Ballast Lane, details on the test can be found on
 
 This is a basic application wich consists of platform where users can signup, create game entries and give their own reviews for the games. Users can also add existing games to their library and give rates for these games.
 
-### Endpoints
+## Endpoints
 
-1. **/auth** - This endpoint does not require authentication/authorization
+#### /auth</b> - Endpoint reponsible for user signup and signin
 
-   **/signup** - This is a **POST** request and required fields should be passed on body: email, password and a username to be displayed (this does is not required to be unique). Table must contain columns for
-   hashed password as long as a salt for the hashing algorithm.
+<details>
+ <summary><code>POST</code> <code><b>/signup</b></code> <code>(creates a new user account)</code></summary>
 
-   #### Users Table
+##### Responses
 
-   | id     | email           | password_hash | username    |
-   | ------ | --------------- | ------------- | ----------- |
-   | PK int | varchar(100)    | varchar(100)  | varchar(30) |
-   |        | unique not null | not null      | not null    |
+> | http code | content-type       | response                                 |
+> | --------- | ------------------ | ---------------------------------------- |
+> | `204`     | `application/json` | no content                               |
+> | `400`     | `application/json` | `{"code":"400","message":"Bad Request"}` |
 
-   **/login** - This is a **POST** request and expects as parameters email and password and returns an HTTP status code and an error message or jwt token.
+</details>
 
-2. **/games** - This endpoint requires user to pass a JWT token and is reponsible for the
+<details>
+ <summary><code>POST</code> <code><b>/signin</b></code> <code>(Authorization endpoint)</code></summary>
 
-   **/** - This is a **GET** request that list the last 30 games. This may be required to be paginated in the future
+##### Body Payload json
 
-   **/** - This is a **POST** request that creates a new game on database and adds to the user Games Collection
+> | name     | type     | data type     | description               |
+> | -------- | -------- | ------------- | ------------------------- |
+> | email    | required | string (100)  | email to be used as login |
+> | password | required | string (8-30) | user password             |
 
-   **/games/{id}** - This is a **GET** request and should return a game by ID
+##### Responses
 
-   **/games/{id}** - This is a **DELETE** request and should delete a game from the Games List as long as from other users Games Collection
+> | http code | content-type       | response                                 |
+> | --------- | ------------------ | ---------------------------------------- |
+> | `200`     | `application/json` | jwt token                                |
+> | `400`     | `application/json` | `{"code":"400","message":"Bad Request"}` |
 
-   #### Games Table
+</details>
 
-   | Id     |UserID       | Title       | Description | ImageUrl     |
-   | ------ |-------------|-------------| ----------- | ------------ |
-   | PK int | int         |varchar(120) | Text        | varchar(255) |
-   |        | FK(Users.ID)|not null     | nullable    | not null     |
+---
 
-3.**GamesCollection** - This endpoint requires user to pass a JWT token
+#### /games</b> - Endpoint reponsible for games management
+
+<details>
+ <summary><code>GET</code> <code><b>/</b></code> <code>(request that list the last 30 games. )</code></summary>
+
+##### Body Payload json
+
+> | name     | type     | data type     | description               |
+> | -------- | -------- | ------------- | ------------------------- |
+> | email    | required | string (100)  | email to be used as login |
+> | password | required | string (8-30) | user password             |
+
+##### Responses
+
+> | http code | content-type       | response                                 |
+> | --------- | ------------------ | ---------------------------------------- |
+> | `200`     | `application/json` | jwt token                                |
+> | `400`     | `application/json` | `{"code":"400","message":"Bad Request"}` |
+
+</details>
+
+<details>
+ <summary><code>POST</code> <code><b>/</b></code> <code>(Creates a new Game)</code></summary>
+
+##### Body Payload json
+
+> | name     | type     | data type     | description               |
+> | -------- | -------- | ------------- | ------------------------- |
+> | email    | required | string (100)  | email to be used as login |
+> | password | required | string (8-30) | user password             |
+
+##### Responses
+
+> | http code | content-type       | response                                 |
+> | --------- | ------------------ | ---------------------------------------- |
+> | `200`     | `application/json` | jwt token                                |
+> | `400`     | `application/json` | `{"code":"400","message":"Bad Request"}` |
+
+</details>
+
+<details>
+ <summary><code>GET</code> <code><b>/{id}</b></code> <code>(Get a game by its id)</code></summary>
+
+##### Body Payload json
+
+> | name     | type     | data type     | description               |
+> | -------- | -------- | ------------- | ------------------------- |
+> | email    | required | string (100)  | email to be used as login |
+> | password | required | string (8-30) | user password             |
+
+##### Responses
+
+> | http code | content-type       | response                                 |
+> | --------- | ------------------ | ---------------------------------------- |
+> | `200`     | `application/json` | jwt token                                |
+> | `400`     | `application/json` | `{"code":"400","message":"Bad Request"}` |
+
+</details>
+
+<details>
+ <summary><code>DELETE</code> <code><b>/{id}</b></code> <code>(Delete a game by its id)</code></summary>
+
+##### Body Payload json
+
+> | name     | type     | data type     | description               |
+> | -------- | -------- | ------------- | ------------------------- |
+> | email    | required | string (100)  | email to be used as login |
+> | password | required | string (8-30) | user password             |
+
+##### Responses
+
+> | http code | content-type       | response                                 |
+> | --------- | ------------------ | ---------------------------------------- |
+> | `200`     | `application/json` | jwt token                                |
+> | `400`     | `application/json` | `{"code":"400","message":"Bad Request"}` |
+
+</details>
+
+---
+
+#### /gamescollection</b> - Endpoint reponsible for games collection management
+
+ <details>
+ <summary><code>GET</code> <code><b>/{id}</b></code> <code></code></summary>
+
+##### Body Payload json
+
+> | name     | type     | data type     | description               |
+> | -------- | -------- | ------------- | ------------------------- |
+> | email    | required | string (100)  | email to be used as login |
+> | password | required | string (8-30) | user password             |
+
+##### Responses
+
+> | http code | content-type       | response                                 |
+> | --------- | ------------------ | ---------------------------------------- |
+> | `200`     | `application/json` | jwt token                                |
+> | `400`     | `application/json` | `{"code":"400","message":"Bad Request"}` |
+
+</details>
+
+---
+
+## Database Tables
+
+#### Users Table
+
+| id     | email           | password_hash | username    |
+| ------ | --------------- | ------------- | ----------- |
+| PK int | varchar(100)    | varchar(100)  | varchar(30) |
+|        | unique not null | not null      | not null    |
+
+#### Games Table
+
+| Id     | UserID       | Title        | Description | ImageUrl     |
+| ------ | ------------ | ------------ | ----------- | ------------ |
+| PK int | int          | varchar(120) | Text        | varchar(255) |
+|        | FK(Users.ID) | not null     | nullable    | not null     |
