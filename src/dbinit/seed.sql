@@ -2,7 +2,7 @@ USE GameDatabase;
 go
 
 INSERT INTO USERS (Email, [UserName], [Password_Hash])
-			VALUES ('giovanni.silva@outlook.com', 'Gigio', '$2a$11$2pSiv.icM2E6t3muegohoup6U6eqDYdoHviYrew7/9qtbzCqG5DL6')
+			VALUES ('test@test.com', 'Test USer', '$2a$11$2pSiv.icM2E6t3muegohoup6U6eqDYdoHviYrew7/9qtbzCqG5DL6')
 
 GO
 
