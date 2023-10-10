@@ -1,9 +1,32 @@
+using GameDatabase.API.AuthEndpoints;
+using GameDatabase.API.Extensions;
+using GameDatabase.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+
+var configurationBuilder = new ConfigurationBuilder()
+    .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables()
+    .AddCommandLine(args);
+
+IConfiguration configuration = configurationBuilder.Build();
+
+builder.Services.AddControllers(options =>
+{
+    //options.Filters.Add(new ValidationExceptionFilter());
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+
+
+builder.Services.AddSingleton(configuration);
+builder.Services.AddAutoMapper(typeof(AuthenticationMapper));
+builder.Services.AddInfrastructureServices();
+builder.Services.AddApplicationServices();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

@@ -7,6 +7,11 @@ services:
     build:
       context: .
       dockerfile: GameDatabase.API/Dockerfile
+    ports:
+     - "5234:80"
+     - "5235:443"
+    depends_on:
+     - sqlserver
   sqlserver:
     image: "mcr.microsoft.com/mssql/server:2019-CU22-ubuntu-20.04"
     container_name: sql_server2019
