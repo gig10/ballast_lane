@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 
 using GameDatabase.API.AuthEndpoints.Payloads;
-using GameDatabase.Core.Services;
+using GameDatabase.Core.Entities;
 
 namespace GameDatabase.API.AuthEndpoints
 {

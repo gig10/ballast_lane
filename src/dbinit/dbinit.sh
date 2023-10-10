@@ -13,6 +13,7 @@ if [ ${data} -eq "0" ]; then
 	echo "Creating $DB_NAME database"
 	/opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P $SA_PASSWORD -Q "DROP DATABASE IF EXISTS $DB_NAME"
 	/opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P $SA_PASSWORD -d master -i /tmp/dbinit/dbinit.sql
+	/opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P $SA_PASSWORD -d master -i /tmp/dbinit/seed.sql''
 else
 	echo "$DB_NAME database already exists"
 fi

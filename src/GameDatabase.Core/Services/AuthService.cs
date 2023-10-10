@@ -1,4 +1,5 @@
-﻿using GameDatabase.Core.Interfaces;
+﻿using GameDatabase.Core.Entities;
+using GameDatabase.Core.Interfaces;
 
 using Crypt = BCrypt.Net.BCrypt;
 

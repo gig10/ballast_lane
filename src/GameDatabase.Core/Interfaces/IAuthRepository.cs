@@ -1,4 +1,4 @@
-﻿using GameDatabase.Core.Services;
+﻿using GameDatabase.Core.Entities;
 
 namespace GameDatabase.Core.Interfaces
 {

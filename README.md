@@ -15,14 +15,14 @@ This is a basic application wich consists of platform where users can signup, cr
 
    #### Users Table
 
-   | id     | email           | password     | salt         | username    |
-   | ------ | --------------- | ------------ | ------------ | ----------- |
-   | PK int | varchar(255)    | varchar(255) | varchar(255) | varchar(50) |
-   |        | unique not null | not null     | not null     | not null    |
+   | id     | email           | password_hash | username    |
+   | ------ | --------------- | ------------- | ----------- |
+   | PK int | varchar(100)    | varchar(100)  | varchar(30) |
+   |        | unique not null | not null      | not null    |
 
    **/login** - This is a **POST** request and expects as parameters email and password and returns an HTTP status code and an error message or jwt token.
 
-2. **/games** - This endpoint requires user to pass a JWT token
+2. **/games** - This endpoint requires user to pass a JWT token and is reponsible for the
 
    **/** - This is a **GET** request that list the last 30 games. This may be required to be paginated in the future
 
@@ -34,7 +34,9 @@ This is a basic application wich consists of platform where users can signup, cr
 
    #### Games Table
 
-   | Id     | Title        | Description  | ImageUrl     |
-   | ------ | ------------ | ------------ | ------------ |
-   | PK int | varchar(120) | varchar(255) | varchar(255) |
-   |        | not null     | nullable     | not null     |
+   | Id     |UserID       | Title       | Description | ImageUrl     |
+   | ------ |-------------|-------------| ----------- | ------------ |
+   | PK int | int         |varchar(120) | Text        | varchar(255) |
+   |        | FK(Users.ID)|not null     | nullable    | not null     |
+
+3.**GamesCollection** - This endpoint requires user to pass a JWT token

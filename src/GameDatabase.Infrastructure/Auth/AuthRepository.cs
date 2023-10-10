@@ -1,5 +1,5 @@
-﻿using GameDatabase.Core.Interfaces;
-using GameDatabase.Core.Services;
+﻿using GameDatabase.Core.Entities;
+using GameDatabase.Core.Interfaces;
 
 using Microsoft.Data.Sql;
 using Microsoft.Data.SqlClient;
