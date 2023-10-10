@@ -20,12 +20,7 @@ var configurationBuilder = new ConfigurationBuilder()
 
 IConfiguration configuration = configurationBuilder.Build();
 
-builder.Services.AddControllers(options =>
-{
-    //options.Filters.Add(new ValidationExceptionFilter());
-});
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-
+builder.Services.AddControllers();
 
 builder.Services.AddSingleton(configuration);
 
@@ -33,7 +28,7 @@ builder.Services.AddJWTAuthentication(configuration);
 
 builder.Services.AddAutoMapper(typeof(AuthenticationMapper));
 builder.Services.AddInfrastructureServices();
-builder.Services.AddApplicationServices();
+builder.Services.AddApplicationServices(configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
